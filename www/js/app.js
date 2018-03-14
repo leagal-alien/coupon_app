@@ -144,6 +144,8 @@ function getShopDetail(shopId) {
             $("#shopName").text(shop.get("name"));
             $("#shopCapacity").text("スペース：" + shop.get("capacity") + "席");
             $("#shopImage").attr("src" , "https://mb.api.cloud.nifty.com/2013-09-01/applications/" + applicationID + "/publicFiles/" + shop.get("image"));
+            $("#shopUrl").text(shop.get("shop_url"));
+            $("#shopUrl").attr("href", shop.get("shop_url"));
             var UseClass = ncmb.DataStore("Used");
             UseClass
                     .equalTo("shop", shopId)
