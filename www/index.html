@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <script src="components/loader.js"></script>
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js"></script>
+  <script src="js/cssua.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoHZpdYUgYDhrMAn8pwAOjFq8UVJ9mwI4&sensor=false&v=3&libraries=geometry" type="text/javascript"></script>
+  <script>
+  //STEP 3 プッシュ通知準備
+
+  </script>
+</head>
+<body>
+  <!-- ログインページ -->
+  <div data-role="page" id="LoginPage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="e">
+      <h1>ランチパスポート</h1>
+    </header>
+      <section data-role="content">
+      <h1>ログイン</h1>
+      ユーザー名
+        <input type="text" id="login_username">
+      パスワード
+        <input type="password" id="login_password">
+      新規登録？
+        <a href="#RegisterPage" data-role="button" data-mini="true" data-inline="true" data-theme="e">登録</a>
+        <a href="#" id="LoginBtn" data-role="button" data-inline="false" data-theme="e">ログインする</a>
+      </section>
+  </div>
+
+  <!-- 登録ページ -->
+  <div data-role="page" id="RegisterPage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="e">
+      <h1>ランチパスポート</h1>
+    </header>
+      <section data-role="content">
+      <h1>新規登録</h1>
+      ユーザー名
+        <input type="text" id="reg_username">
+      パスワード
+        <input type="password" id="reg_password">
+        <a href="#" id="RegisterBtn" data-role="button" data-inline="false" data-theme="e">登録する</a>
+        <a href="#LoginPage" data-role="button" data-mini="true" data-inline="true" data-theme="e">戻る</a>
+      </section>
+  </div>
+
+  <!-- 地図ページ -->
+  <div data-role="page" id="MapPage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="e">
+      <h1>ランチパスポート</h1>
+      <a href="#yesNoDialog_logout" class="ui-btn-left" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-theme="e">ログアウト</a>
+    </header>
+    <section data-role="content">
+      <!--Map show-->
+       <div data-role="content" id="mapArea">
+         <button onclick="showMap()">地図でお店を見る</button>
+         <div id="map_canvas" style="width:100%; height:400px;"></div>
+      </div>
+      <!--Dialog box confirming logout-->
+      <div data-role="popup" id="yesNoDialog_logout" data-overlay-theme="e" data-theme="e" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+        <div data-role="header" data-theme="e" class="ui-corner-top" style="top: 0 !important;">
+          <h1>ログアウト確認</h1>
+        </div>
+        <div align="middle" data-role="content" data-theme="e" class="ui-corner-bottom ui-content">
+          <h3 class="ui-title">
+          <p>ログアウトしてもよろしいですか？</p>
+          <a href="#" id="YesBtn_logout" data-role="button" data-inline="true" data-transition="flow" data-theme="e">はい</a>
+          <a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="e">いいえ</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 利用ページ -->
+  <div data-role="page" id="ShopPage" data-theme="t">
+    <header data-role="header" data-position="fixed" data-theme="e">
+      <h1>ランチパスポート</h1>
+      <a href="#yesNoDialog_logout" class="ui-btn-left" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-theme="e">ログアウト</a>
+      <a href="#MapPage" class="ui-btn-right" data-role="button" data-mini="true" data-inline="true" data-theme="e">戻る</a>
+    </header>
+    <section data-role="content">
+      <!--Shop show-->
+       <div data-role="content" id="shopArea">
+         <div id="shop detail" style="width:100%; height:100%;">
+            <h2 id="shopName"></h1>
+            <div id="shopCapacity"></div>
+            <div align="center">
+               <img id="shopImage" src="" height="200" width="150"></img>
+            </div>
+            <div id="shopUsage"></div>
+            <a href="#" id="UseBtn" data-role="button" data-inline="false" data-theme="e">利用する</a>
+         </div>
+      </div>
+      <!--Dialog box confirming logout-->
+      <div data-role="popup" id="yesNoDialog_logout" data-overlay-theme="a" data-theme="e" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+        <div data-role="header" data-theme="e" class="ui-corner-top" style="top: 0 !important;">
+          <h1>ログアウト確認</h1>
+        </div>
+        <div align="middle" data-role="content" data-theme="e" class="ui-corner-bottom ui-content">
+          <h3 class="ui-title">
+          <p>ログアウトしてもよろしいですか？</p>
+          <a href="#" id="YesBtn_logout" data-role="button" data-inline="true" data-transition="flow" data-theme="e" onclick="onLogoutBtn();" >はい</a>
+          <a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="e">いいえ</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>
