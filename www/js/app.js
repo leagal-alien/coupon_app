@@ -9,6 +9,18 @@ $(function() {
   $("#RegisterBtn").click(onRegisterBtn);
   $("#YesBtn_logout").click(onLogoutBtn);
   $("#UseBtn").click(onUseBtn);
+  // すでにログインしていたらメインページを表示
+  var currentUser = ncmb.User.getCurrentUser();
+  if (currentUser){
+    ncmb.User.fetch()
+      .then(function(results){
+        //console.log("currentUserName is " + currentUser.get("userName"));
+        $.mobile.changePage('#MapPage');
+      })
+      .catch(function(err){
+        ncmb.User.logout();
+      });
+  } 
 });
 
 //----------------------------------会員管理-----------------------------------//
