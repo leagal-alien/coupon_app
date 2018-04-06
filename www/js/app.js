@@ -9,6 +9,18 @@ $(function() {
   $("#RegisterBtn").click(onRegisterBtn);
   $("#YesBtn_logout").click(onLogoutBtn);
   $("#UseBtn").click(onUseBtn);
+  // すでにログインしていたらメインページを表示
+  var currentUser = ncmb.User.getCurrentUser();
+  if (currentUser){
+    ncmb.User.fetch()
+      .then(function(results){
+        //console.log("currentUserName is " + currentUser.get("userName"));
+        $.mobile.changePage('#MapPage');
+      })
+      .catch(function(err){
+        ncmb.User.logout();
+      });
+  } 
 });
 
 //----------------------------------会員管理-----------------------------------//
@@ -144,6 +156,8 @@ function getShopDetail(shopId) {
             $("#shopName").text(shop.get("name"));
             $("#shopCapacity").text("スペース：" + shop.get("capacity") + "席");
             $("#shopImage").attr("src" , "https://mb.api.cloud.nifty.com/2013-09-01/applications/" + applicationID + "/publicFiles/" + shop.get("image"));
+            $("#shopUrl").text(shop.get("shop_url"));
+            $("#shopUrl").attr("href", shop.get("shop_url"));
             var UseClass = ncmb.DataStore("Used");
             UseClass
                     .equalTo("shop", shopId)
